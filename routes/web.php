@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PageController;
+use App\Http\Controllers\EmployeeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,10 +15,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+
+Auth::routes(['register' => false]);
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('/', [PageController::class, 'home'])->name('home');
+    Route::resource('employee',EmployeeController::class );
+    Route::get('employee/datatable/ssd',[EmployeeController::class, 'ssd']);
 });
-
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
