@@ -24,6 +24,7 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/dataTables.material.min.css">
     <link rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/material-components-web/4.0.0/material-components-web.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.5.0/css/responsive.dataTables.min.css">
 
     {{-- daterange --}}
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
@@ -36,6 +37,9 @@
     <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
     <script src="https://cdn.datatables.net/1.13.7/js/dataTables.material.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.5.0/js/dataTables.responsive.min.js"></script>
+    <script src="https://cdn.datatables.net/plug-ins/1.10.13/features/mark.js/datatables.mark.js"></script>
+    <script src="https://cdn.jsdelivr.net/g/mark.js(jquery.mark.min.js)"></script>
 
     {{-- daterange --}}
     <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
@@ -44,6 +48,8 @@
 
     <!-- Laravel Javascript Validation -->
     <script type="text/javascript" src="{{ asset('vendor/jsvalidation/js/jsvalidation.js') }}"></script>
+
+
 
     {{-- sweetalarm --}}
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -59,6 +65,20 @@
 
                 })
             @endif
+            @if (session('update'))
+                Swal.fire({
+                    title: 'Successfully updated',
+                    text: '{{ session('update') }}',
+                    icon: 'success',
+                    confirmButtonText: 'Okay',
+
+                })
+            @endif
+
+            $.extend(true, $.fn.dataTable.defaults, {
+                mark: true,
+                
+            });
         })
     </script>
 
@@ -126,35 +146,35 @@
         </nav>
 
         {{-- Side Bar --}}
-        <div class="page-wrapper chiller-theme toggled">
+        <div class="page-wrapper chiller-theme ">
             <a id="show-sidebar" class="btn btn-sm btn-dark" href="#">
                 <i class="fas fa-bars"></i>
             </a>
             <nav id="sidebar" class="sidebar-wrapper">
                 <div class="sidebar-content">
                     <div class="sidebar-brand">
-                        <a href="#">pro sidebar</a>
+                        <a href="#">Ninja HR</a>
                         <div id="close-sidebar">
                             <i class="fas fa-times"></i>
                         </div>
                     </div>
-                    {{-- <div class="sidebar-header">
+                    <div class="sidebar-header">
                         <div class="user-pic">
                             <img class="img-responsive img-rounded"
-                                src="https://raw.githubusercontent.com/azouaoui-med/pro-sidebar-template/gh-pages/src/img/user.jpg"
+                                src="{{ auth()->user()->profile_img_path() }}"
                                 alt="User picture">
                         </div>
                         <div class="user-info">
-                            <span class="user-name">Jhon
-                                <strong>Smith</strong>
+                            <span class="user-name">
+                                <strong>{{ auth()->user()->name }}</strong>
                             </span>
-                            <span class="user-role">Administrator</span>
+                            <span class="user-role">{{ auth()->user()->department ? auth()->user()->department->name : 'No Department' }}</span>
                             <span class="user-status">
                                 <i class="fa fa-circle"></i>
                                 <span>Online</span>
                             </span>
                         </div>
-                    </div> --}}
+                    </div>
                     <!-- sidebar-header  -->
                     {{-- <div class="sidebar-search">
                         <div>
@@ -298,7 +318,7 @@
                                 </a>
                             </li> --}}
                             <li>
-                                <a href="#">
+                                <a href="{{ '/' }}">
                                     <i class="fa fa-home"></i>
                                     <span>Home</span>
                                 </a>
@@ -355,9 +375,9 @@
                                 <i class="fas fa-home"></i>
                                 <p class="mb-0">Home</p>
                             </a>
-                            <a href="">
-                                <i class="fas fa-home"></i>
-                                <p class="mb-0">Home</p>
+                            <a href="{{ route('profile.profile') }}">
+                                <i class="fas fa-user"></i>
+                                <p class="mb-0">Profile</p>
                             </a>
                         </div>
                     </div>
@@ -369,6 +389,16 @@
     <script>
         jQuery(function($) {
 
+            let token = document.head.querySelector('meta[name="csrf-token"]');
+            if (token) {
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': token.content,
+                    }
+                })
+            } else {
+                console.error('CSRF TOken not found');
+            }
             $(".sidebar-dropdown > a").click(function() {
                 $(".sidebar-submenu").slideUp(200);
                 if (

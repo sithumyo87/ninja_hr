@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PageController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\EmployeeController;
 
 /*
@@ -22,4 +23,6 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/', [PageController::class, 'home'])->name('home');
     Route::resource('employee',EmployeeController::class );
     Route::get('employee/datatable/ssd',[EmployeeController::class, 'ssd']);
+
+    Route::get('profile',[ProfileController::class,'profile'])->name('profile.profile');
 });

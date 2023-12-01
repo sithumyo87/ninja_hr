@@ -1,12 +1,11 @@
-*{
-    
+* {
 }
 
-.text-title{
+.text-title {
     color: rgb(8, 218, 8);
 }
 
-.btn-main{
+.btn-main {
     color: #fff;
     background-color: rgb(8, 218, 8);
 }
@@ -15,6 +14,16 @@
     background-color: rgb(8, 218, 8);
 }
 
+.action-icon a {
+    padding: 5px;
+    background: #eee;
+    border-radius: 5px;
+    width: 32px;
+    height: 32px;
+    display: inline-block;
+    margin: 3px !important;
+    text-align: center;
+}
 /* sideBar */
 
 @keyframes swing {
@@ -72,8 +81,8 @@ body {
 }
 
 .page-wrapper .sidebar-wrapper,
-.sidebar-wrapper .sidebar-brand>a,
-.sidebar-wrapper .sidebar-dropdown>a:after,
+.sidebar-wrapper .sidebar-brand > a,
+.sidebar-wrapper .sidebar-dropdown > a:after,
 .sidebar-wrapper .sidebar-menu .sidebar-dropdown .sidebar-submenu li a:before,
 .sidebar-wrapper ul li a i,
 .page-wrapper .page-content,
@@ -176,7 +185,7 @@ body {
     align-items: center;
 }
 
-.sidebar-wrapper .sidebar-brand>a {
+.sidebar-wrapper .sidebar-brand > a {
     text-transform: uppercase;
     font-weight: bold;
     flex-grow: 1;
@@ -213,7 +222,7 @@ body {
     float: left;
 }
 
-.sidebar-wrapper .sidebar-header .user-info>span {
+.sidebar-wrapper .sidebar-header .user-info > span {
     display: block;
 }
 
@@ -234,7 +243,7 @@ body {
 
 /*-----------------------sidebar-search------------------------*/
 
-.sidebar-wrapper .sidebar-search>div {
+.sidebar-wrapper .sidebar-search > div {
     padding: 10px 20px;
 }
 
@@ -269,12 +278,12 @@ body {
     border-radius: 4px;
 }
 
-.sidebar-wrapper .sidebar-menu ul li a:hover>i::before {
+.sidebar-wrapper .sidebar-menu ul li a:hover > i::before {
     display: inline-block;
     animation: swing ease-in-out 0.5s 1 alternate;
 }
 
-.sidebar-wrapper .sidebar-menu .sidebar-dropdown>a:after {
+.sidebar-wrapper .sidebar-menu .sidebar-dropdown > a:after {
     font-family: "Font Awesome 5 Free";
     font-weight: 900;
     content: "\f105";
@@ -332,9 +341,36 @@ body {
     display: none;
 }
 
-.sidebar-wrapper .sidebar-menu .sidebar-dropdown.active>a:after {
+.sidebar-wrapper .sidebar-menu .sidebar-dropdown.active > a:after {
     transform: rotate(90deg);
     right: 17px;
+}
+
+div.dataTables_wrapper div.dataTables_paginate {
+    text-align: right;
+    font-size: 20px;
+}
+
+.paginate_button {
+    /* width: 50px; */
+    padding: 4px 10px;
+    /* background-color: rebeccapurple; */
+}
+
+.previous {
+    width: 50px;
+    background-color: #e2e5ed;
+}
+
+.next {
+    width: 50px;
+    background-color: #e2e5ed;
+}
+
+.current {
+    width: 50px;
+    background-color: rgb(8, 218, 8);
+    color: white;
 }
 
 /*--------------------------side-footer------------------------------*/
@@ -346,7 +382,7 @@ body {
     display: flex;
 }
 
-.sidebar-footer>a {
+.sidebar-footer > a {
     flex-grow: 1;
     text-align: center;
     height: 30px;
@@ -354,7 +390,7 @@ body {
     position: relative;
 }
 
-.sidebar-footer>a .notification {
+.sidebar-footer > a .notification {
     position: absolute;
     top: 0;
 }
@@ -391,7 +427,11 @@ body {
     padding-top: 20px;
 }
 
-.page-wrapper .page-content>div {
+.page-content {
+    height: 80vh;
+}
+
+.page-wrapper .page-content > div {
     padding: 20px 40px;
 }
 
@@ -443,11 +483,10 @@ body {
     background: transparent;
 }
 
-
 /*-----------------------------chiller-theme-------------------------------------------------*/
 
 .chiller-theme .sidebar-wrapper {
-    background: #31353D;
+        background: #2D3747;
 }
 
 .chiller-theme .sidebar-wrapper .sidebar-header,
@@ -466,17 +505,17 @@ body {
 .chiller-theme .sidebar-wrapper .sidebar-header .user-info .user-status,
 .chiller-theme .sidebar-wrapper .sidebar-search input.search-menu,
 .chiller-theme .sidebar-wrapper .sidebar-search .input-group-text,
-.chiller-theme .sidebar-wrapper .sidebar-brand>a,
+.chiller-theme .sidebar-wrapper .sidebar-brand > a,
 .chiller-theme .sidebar-wrapper .sidebar-menu ul li a,
-.chiller-theme .sidebar-footer>a {
+.chiller-theme .sidebar-footer > a {
     color: #818896;
 }
 
-.chiller-theme .sidebar-wrapper .sidebar-menu ul li:hover>a,
-.chiller-theme .sidebar-wrapper .sidebar-menu .sidebar-dropdown.active>a,
+.chiller-theme .sidebar-wrapper .sidebar-menu ul li:hover > a,
+.chiller-theme .sidebar-wrapper .sidebar-menu .sidebar-dropdown.active > a,
 .chiller-theme .sidebar-wrapper .sidebar-header .user-info,
-.chiller-theme .sidebar-wrapper .sidebar-brand>a:hover,
-.chiller-theme .sidebar-footer>a:hover i {
+.chiller-theme .sidebar-wrapper .sidebar-brand > a:hover,
+.chiller-theme .sidebar-footer > a:hover i {
     color: #b8bfce;
 }
 
@@ -489,10 +528,15 @@ body {
 }
 
 .chiller-theme .sidebar-wrapper ul li:hover a i,
-.chiller-theme .sidebar-wrapper .sidebar-dropdown .sidebar-submenu li a:hover:before,
-.chiller-theme .sidebar-wrapper .sidebar-search input.search-menu:focus+span,
+.chiller-theme
+    .sidebar-wrapper
+    .sidebar-dropdown
+    .sidebar-submenu
+    li
+    a:hover:before,
+.chiller-theme .sidebar-wrapper .sidebar-search input.search-menu:focus + span,
 .chiller-theme .sidebar-wrapper .sidebar-menu .sidebar-dropdown.active a i {
-    color: #16c7ff;
+    color: rgb(8, 218, 8);
     text-shadow: 0px 0px 10px rgba(22, 199, 255, 0.5);
 }
 
@@ -513,33 +557,62 @@ body {
     border-top: 1px solid #464a52;
 }
 
-.chiller-theme .sidebar-footer>a:first-child {
+.chiller-theme .sidebar-footer > a:first-child {
     border-left: none;
 }
 
-.chiller-theme .sidebar-footer>a:last-child {
+.chiller-theme .sidebar-footer > a:last-child {
     border-right: none;
+}
+
+div.dataTables_wrapper div.dataTables_filter input {
+    margin-left: 0.5em;
+    width: 70%;
 }
 /* end Side Bar */
 
 /* bottom menu  */
-.bottom-menu{
-    width: 85%; 
+.bottom-menu {
+    width: 85%;
     position: fixed;
     bottom: 0%;
     left: 13%;
     text-align: center;
     text-decoration: none;
-   
+
     /* background-color: rgb(8, 218, 8);; */
 }
 
 .bottom-menu a:link {
     text-decoration: none;
-   
 }
 
-.bottom-menu a{
+.bottom-menu a {
     color: rgb(8, 218, 8);
 }
 /* end bottom menu */
+
+.preview_img img {
+    width: 200px;
+    height: 200px;
+}
+
+.profile_img {
+    width: 150px;
+    height: 150px;
+    border-radius: 100%;
+    border: 1px solid #1e2229;
+}
+
+.profile_thumbnail {
+    width: 100px;
+    height: 100px;
+    border-radius: 10px;
+    border: 1px solid #1e2229;
+}
+
+
+mark {
+    background: rgb(8, 218, 8);
+    color: black;
+}
